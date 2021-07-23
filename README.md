@@ -10,6 +10,7 @@ logging.conf とかファイル出力とかログファイルのローテート�
 ### basic_cofig
 
 * `logging.basicConfig()` でごっそり設定を済ませるパターン
+* とりあえずファイルも特に分けないパターン
 
 ### multi_modules
 
@@ -20,12 +21,14 @@ logging.conf とかファイル出力とかログファイルのローテート�
 
 * `logging.config.fileConfig()` を使う
 * logging.conf から設定値を読み込むパターン
+* 設定値の中身は後述の time_based_rotation と同じ
 
 ### file_config
 
 * `logging.config.dictConfig()` を使う
 * logging.yml から設定値を読み込むパターン
 * あくまで辞書型変数から設定値を読み込む機能でしかないので、 YAML ファイルからの読み込みは半分おまけ（外部ライブラリも使うし）
+* 設定値の中身は後述の time_based_rotation と同じ
 
 ### handler
 
@@ -40,3 +43,7 @@ logging.conf とかファイル出力とかログファイルのローテート�
 
 * コンソールとファイルに出力するハンドラーを定義
 * ファイルに出力する方は一定容量ごとにローテートされる
+
+## 参考
+
+* [Logging HOWTO](https://docs.python.org/ja/3/howto/logging.html#)

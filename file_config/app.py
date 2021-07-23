@@ -1,15 +1,23 @@
-import log
+import logging
+import logging.config
+import os
 import time
 
 
-logger = log.get_logger(
-    name=__name__,
-    log_level='DEBUG',
-    # filename='example.log'
-)
+def get_logger(name, log_level):
+    dir_name = os.path.dirname(os.path.abspath(__file__))
+    logging.config.fileConfig(f'{dir_name}/config/logging.conf')
+    logger = logging.getLogger(name)
+    logger.setLevel(getattr(logging, log_level.upper()))
+    return logger
 
 
 def main():
+    logger = get_logger(
+        name=__name__,
+        log_level='DEBUG',
+        # filename='example.log' # TODO: 後からファイル名を指定したい
+    )
     logger.debug('This is debug log')
     logger.info('Start')
     cnt = 0
