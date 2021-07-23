@@ -1,0 +1,30 @@
+version: 1
+root:
+  level: NOTSET
+  handlers:
+    - console
+    - file
+myLogger:
+  level: DEBUG
+  handlers:
+    - console
+    - file
+  qualname: myLogger
+  propagate: 0
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: default
+    level: DEBUG
+  file:
+    class: logging.handlers.TimedRotatingFileHandler
+    formatter: default
+    level: DEBUG
+    filename: log/example.log
+    backupCount: 3
+    interval: 5
+    when: S
+formatters:
+  default:
+    format: '%(asctime)s.%(msecs)-3d [%(levelname)s] %(filename)s %(funcName)s: %(message)s'
+    datefmt: '%Y/%m/%d %H:%M:%S'
